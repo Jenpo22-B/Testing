@@ -1,0 +1,118 @@
+﻿@model Formulario
+@{
+    ViewData["Title"] = "Formulario Pacientes";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>Formulario Pacientes</h1>
+        </div>
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form asp-action="Index" id="Formulario">
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label asp-for="Rut" class="form-label">Rut</label>
+                            <input type="text" asp-for="Rut" class="form-control" />
+                            <span asp-validation-for="Rut" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col ">
+                            <label asp-for="Nombre">Nombre</label>
+                            <input type="text" asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="Apellido">Apellido</label>
+                            <input type="text" asp-for="Apellido" class="form-control" />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label asp-for="Direccion">Direccion</label>
+                            <input type="text" asp-for="Direccion" class="form-control" />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label asp-for="Ciudad">Ciudad</label>
+                            <input type="text" asp-for="Ciudad" class="form-control" />
+                            <span asp-validation-for="Ciudad" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label for="Telefono">Celular</label>
+                            <div class="input-group">
+                                <span class="input-group-text">+56 9</span>
+                                <input type="text" asp-for="Telefono" class="form-control" placeholder="********" />
+                            </div>
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="FechaNacimiento">Fecha Nacimiento</label>
+                            <input type="date" asp-for="FechaNacimiento" class="form-control" />
+                            <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label asp-for="Email">Email</label>
+                            <input type="text" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label for="EstadoCivil">Estado Civil</label>
+                            <select asp-for="EstadoCivil" class="form-select">
+                                <option value="">Seleccione</option>
+                                <option value="Soltero">Soltero</option>
+                                <option value="Casado">Casado</option>
+                                <option value="Viudo">Viudo</option>
+                                <option value="Divorciado">Divorciado</option>
+                            </select>
+                            <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label for="Comentario">Comentarios</label>
+                            <textarea asp-for="Comentario" class="form-control"></textarea>
+                            <span asp-validation-for="Comentario" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary m-2">Enviar</button>
+                <button type="button" id="btnLimpiar" class="btn btn-secondary">Limpiar</button>
+            </form>
+        </div>
+    </div>
+    
+    
+ 
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial.cshtml" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var btnLimpiar = document.getElementById('btnLimpiar');
+
+
+            btnLimpiar.addEventListener('click', function () {
+                var formulario = document.getElementById('Formulario');
+
+                formulario.reset();
+
+                var validationErrors = document.querySelectorAll('.text-danger');
+                validationErrors.forEach(function (error) {
+                    error.textContent = '';
+                });
+
+            });
+        });
+    </script>
+}
